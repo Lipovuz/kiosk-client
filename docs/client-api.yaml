@@ -1,0 +1,592 @@
+openapi: 3.0.3
+servers:
+  - url: http://localhost
+info:
+  title: Client API
+  description: ''
+  version: 1.0.0
+paths:
+  /api/client:
+    get:
+      summary: Получить общие данные о киоске
+      responses:
+        200:
+          description: Информация об установленном киоске
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KioskInfo"
+        204:
+          description: Киоск НЕ УСТАНОВЛЕН
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Kiosk not set
+  /api/client/state/stand-by:
+    post:
+      summary: Переход в спящий режим - сброс
+      responses:
+        200:
+          description: Информация об установленном киоске
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KioskInfo"
+        204:
+          description: Киоск НЕ УСТАНОВЛЕН
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Kiosk not set
+  /api/client/source/certain-faces-search:
+    post:
+      summary: Запрос на поиск фотографий по образцу
+      requestBody:
+        required: true
+        description: Фото (образец) для поиска
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - sampleImage
+                - location
+              properties:
+                location:
+                  type: string
+                  description: Локация
+                  example: DC
+                sampleImage:
+                  type: string
+                  format: byte
+                  description: Фото для поиска в формате base64
+                limit:
+                  type: integer
+                  description: количество получаемых фото (от 1 до 30), по ум. 15
+                  example: 15
+                offset:
+                  type: integer
+                  description: отступ (от 0 до 200), по ум. 0
+                  example: 0
+                date:
+                  type: string
+                  format: date-time
+                  description: Время фотографии
+      responses:
+        200:
+          description: Фотографии
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  images:
+                    description: Список фотографий
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ImageModel"
+                  total:
+                    type: integer
+                    description: Общее количесто фотографий
+                    example: 223
+                  offset:
+                    type: integer
+                    description: Отступ
+                    example: 223
+                  limit:
+                    type: integer
+                    description: Количество запрашиваемых фото
+                    example: 223
+                  date:
+                    type: string
+                    format: date-time
+                    description: Время фотографии
+                  queryNumber:
+                    type: integer
+                    description: Номер запроса к нейросети
+                    example: 1
+  /api/client/source/get-dates:
+    post:
+      summary: Запрос на поиск дат
+      requestBody:
+        required: true
+        description: Поиск существующих да для поиска фото
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - location
+              properties:
+                location:
+                  type: string
+                  description: Локация
+                  example: DC
+      responses:
+        200:
+          description: Массив дат
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: '2021_11_04'
+  /api/client/source/image-directory-faces:
+    get:
+      summary: Получить список фотографий содержащих лица людей с одним брендом
+      parameters:
+        - in: query
+          description: Отступ от начала списка
+          name: offset
+          schema:
+            type: integer
+          required: false
+        - in: query
+          description: Количество запрашиваемых фото
+          name: limit
+          schema:
+            type: integer
+          required: false
+      responses:
+        200:
+          description: Фотографии
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  images:
+                    description: Список фотографий
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ImageModel"
+                  total:
+                    type: integer
+                    description: Общее количесто фотографий
+                    example: 223
+                  offset:
+                    type: integer
+                    description: Отступ
+                    example: 223
+                  limit:
+                    type: integer
+                    description: Количество запрашиваемых фото
+                    example: 223
+  /api/client/source/get-image-from-mail:
+    post:
+      summary: Метод для получения изображений из почты
+      responses:
+        200:
+          description: Фотографии
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  images:
+                    description: Список фотографий
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ImageModel"
+                  total:
+                    type: integer
+                    description: Общее количесто фотографий
+                    example: 223
+  /api/client/source/selfie:
+    post:
+      summary: Метод для сохранения фото после селфи
+      parameters:
+        - in: query
+          description: Массив фото
+          name: images
+          schema:
+            type: array
+            items:
+              type: string
+              example: 'base64'
+          required: true
+      responses:
+        200:
+          description: Фотографии
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  images:
+                    description: Список фотографий
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ImageModel"
+                  total:
+                    type: integer
+                    description: Общее количесто фотографий
+                    example: 1
+  /api/client/source/save-images:
+    post:
+      summary: Метод для сохранения фото по wifi
+      parameters:
+        - in: query
+          description: Массив фото
+          name: images
+          schema:
+            type: array
+            items:
+              type: string
+              example: 'base64'
+          required: true
+      responses:
+        200:
+          description: True or False
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /api/client/source/search-images:
+    get:
+      summary: Метод для поиска фото после загрузки через wifi
+      responses:
+        200:
+          description: Фотографии
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  images:
+                    description: Список фотографий
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ImageModel"
+                  total:
+                    type: integer
+                    description: Общее количесто фотографий
+                    example: 223
+  /api/client/source/web-site:
+    post:
+      summary: Метод для поиска фото после загрузки через сайт
+      responses:
+        200:
+          description: Фотографии
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  images:
+                    description: Список фотографий
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ImageModel"
+                  total:
+                    type: integer
+                    description: Общее количесто фотографий
+                    example: 223
+  /api/client/order/{orderId}/execute:
+    get:
+      summary: Выполнить заказ (печать/отправка)
+      parameters:
+        - name: orderId
+          in: path
+          description: ID заказа (полученный из метода /api/client/order)
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: QR чека
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  qr:
+                    type: string
+                    example: "t=20210319T17:51&s=1800.00&fn=9999078902006617&i=19104&fp=951441147&n=1"
+                    description: При сбое работы сервиса чеков метод вернет qr = null
+  /api/client/order/{orderId}/invoice:
+    get:
+      summary: Создание чека
+      parameters:
+        - name: orderId
+          in: path
+          description: ID заказа (полученный из метода /api/client/order)
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: QR чека
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  qr:
+                    type: string
+                    example: "t=20210319T17:51&s=1800.00&fn=9999078902006617&i=19104&fp=951441147&n=1"
+                    description: При сбое работы сервиса чеков метод вернет qr = null
+  /api/client/order:
+    post:
+      summary: Создание заказа
+      requestBody:
+        required: true
+        description: Данные корзины заказа
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderRequest"
+      responses:
+        200:
+          description: Принимает данные корзины заказа
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order_id:
+                    type: integer
+                    example: 2332
+                    description: ID заказа
+                  amount_penny:
+                    type: integer
+                    example: 20000
+                    description: Общая сума к оплате в копейках (200 руб по примеру)
+  /api/broker/acquiring:
+    post:
+      summary: Обработчик сообщений от сервиса оплаты картой (2 Can)
+      requestBody:
+        required: true
+        description: входящий Json полученный от сервиса по WS соединению
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        200:
+          description: Возвращает актуальную информацию о состоянии баланса
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BalanceInfo"
+components:
+  schemas:
+    KioskInfo:
+      type: object
+      description: Информация по киоску
+      properties:
+        identity:
+          example: exampleKiosk12@lomobil.com
+          description: Идентификатор киоска
+          type: string
+        name:
+          example: Киоск № 34
+          description: Название киоска
+          type: string
+        imageSources:
+          type: array
+          items:
+            type: string
+            example: /api/client/source/image-directory-faces
+          description: Перечень URI источников изображений (один из 2 механик)
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: integer
+                description: Продукт (Услуга):<br>
+                  1 - печать<br>
+                  101 - отправка email
+              costPenny:
+                type: integer
+                description: Цена в "копейках"
+              currencyId:
+                example: 643
+                type: integer
+                description: код валюты (643 - RUB)
+              name:
+                example: Отправить на email брендированое фото
+                type: string
+                description: Название продукта
+        defaultBrandId:
+          type: integer
+          description: ID бренда
+          example: 1
+        defaultBalance:
+          $ref: "#/components/schemas/BalanceInfo"
+        devices:
+          type: object
+          properties:
+            webCamera:
+              type: object
+              properties:
+                rotate:
+                  type: integer
+                  description: Угол для поворота изображения камери (90 - по часовой, 270 - против часовой)
+                  example: 90
+    BalanceInfo:
+      type: object
+      description: Баланс (текущий) киоска, для указанной валюты
+      properties:
+        amountPenny:
+          type: integer
+          description: Сума баланса в "копейках"
+        currencyId:
+          type: integer
+          description: ID валюты
+    ImageModel:
+      type: object
+      description: Изображение
+      properties:
+        path:
+          type: string
+          description: Путь к файлу
+          example: /var/www/conteiner/public/storage/test.png
+        originalUri:
+          type: string
+          description: Относительный URL к оригинальному изображению
+          example: /storage/test.png
+        thumbUri:
+          type: string
+          description: Относительный URL к превью изображения
+          example: /storage/test.png
+        brandId:
+          type: integer
+          description: ID бренда
+          example: 1
+        createAt:
+          type: integer
+          description: время получения изображения (unix timastamp)
+          example: 1612807698
+    BrandModel:
+      type: object
+      description: Бренд
+      properties:
+        id:
+          type: integer
+          description: ID бренда
+          example: 1
+        name:
+          type: string
+          description: Наименование бренда
+          example: Смешарики
+        description:
+          type: string
+          description: Описание бренда
+          example: Шарики
+    OrderRequest:
+      type: object
+      required:
+        - start_at
+        - items
+        - terminal
+        - queryNumber
+      properties:
+        terminal:
+          example: МК
+          description: локацыя
+          type: string
+        queryNumber:
+          example: 1
+          description: Номер запроса к нейросети
+          type: integer
+        client_email:
+          example: vasysy@pupkin.com
+          description: Email клиента (для чека либо для отправки фото)
+          type: string
+        start_at:
+          example: 1612807698
+          description: Время (unix timastamp) создания заказа
+          type: integer
+          format: int64
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              product_id:
+                description: Продукт (Услуга):<br>
+                  1 - печать<br>
+                  101 - отправка email
+                type: integer
+                enum:
+                  - 1
+                  - 101
+              product_count:
+                example: 2
+                description: количесто позиций (фотографий)
+                type: integer
+                minimum: 1
+                maximum: 1000
+              brand_id:
+                example: 7
+                description: ID бренда
+                type: integer
+              image_path:
+                example: /folder/local/fces/j340uf349304k30rk934rd.png
+                description: огносительный путь к изображению
+                type: string
+    OrderModel:
+      type: object
+      required:
+        - start_at
+      properties:
+        kioskIdentity:
+          example: kiosk33@pupkin.com
+          description: Идентификатор киоска
+          type: string
+        id:
+          example: 3443
+          description: ID заказа
+          type: integer
+        amountPenny:
+          example: 20000
+          description: сума в "копейках"
+          type: integer
+        client_email:
+          example: vasysy@pupkin.com
+          description: Email клиента (для чека либо для отправки фото)
+          type: string
+        start_at:
+          example: 1612807698
+          description: Время (unix timastamp) создани заказа
+          type: integer
+          format: int64
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              product_id:
+                description: Продукт (Услуга):<br>
+                  1 - печать<br>
+                  101 - отправка email
+                type: integer
+                enum:
+                  - 1
+                  - 101
+              product_count:
+                example: 2
+                description: количесто позиций (фотографий)
+                type: integer
+                minimum: 1
+                maximum: 1000
+              brand_id:
+                example: 7
+                description: ID бренда
+                type: integer
+              image_path:
+                example: /folder/local/fces/j340uf349304k30rk934rd.png
+                description: огносительный путь к изображению
+                type: string

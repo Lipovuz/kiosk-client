@@ -1,0 +1,30 @@
+{
+    "groupId": "661093d1-bbd8-413b-9334-dba417142504",
+    "orderId": "order-1629715515.8425",
+    "status": "processed",
+    "accepted": "2021-08-23T10:45:16.020316Z",
+    "processed": "2021-08-23T10:45:18.188368Z",
+    "registrationInfo": {
+        "deviceSerialNumber": "002890000254",
+        "deviceRegistrationNumber": "0005569778020105",
+        "fnSerialNumber": "9252440300250498",
+        "shiftNumber": 32,
+        "receiptNumber": 1,
+        "fiscalDocNumber": 69,
+        "fiscalSign": "4223441880",
+        "registrationTime": "2021-08-23T13:45:00Z",
+        "ofdName": "ООО \"ПЕТЕР-СЕРВИС Спецтехнологии\"",
+        "ofdSite": "gate.ofd.ru",
+        "ofdINN": "7841465198",
+        "companyName": "ИП Якименко С.А.",
+        "companyINN": "503811088848",
+        "address": "107023, г.Москва, улица Электрозаводская, 24",
+        "place": "ЦОД; выездные фото услуги",
+        "fnsSite": "www.nalog.ru",
+        "taxSystem": 5,
+        "taxSystemName":"Ставка НДС 20%",
+        "machineNumber": "MBK00001",
+        "dateTime": "2021-08-23T13:45:00+03:00"
+    },
+    "qr": "t=20210823T1345&s=2.00&fn=9252440300250498&i=69&fp=4223441880&n=1"
+}

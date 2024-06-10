@@ -1,0 +1,37 @@
+{
+    "images": [
+        {
+            "path": "./static/img/p1.jpg",
+            "originalUri": "./static/img/p1.jpg",
+            "thumbUri": "./static/img/p1.jpg",
+            "brandId": 1,
+            "createAt": 1612807698
+        },
+        {
+            "path": "./static/img/p2.jpg",
+            "originalUri": "./static/img/p2.jpg",
+            "thumbUri": "./static/img/p2.jpg",
+            "brandId": 1,
+            "createAt": 1612807698
+        },
+        {
+            "path": "./static/img/p3.jpg",
+            "originalUri": "./static/img/p3.jpg",
+            "thumbUri": "./static/img/p3.jpg",
+            "brandId": 1,
+            "createAt": 1612807698
+        },
+        {
+            "path": "./static/img/p4.jpg",
+            "originalUri": "./static/img/p4.jpg",
+            "thumbUri": "./static/img/p4.jpg",
+            "brandId": 1,
+            "createAt": 1612807698
+        }
+    ],
+    "total": 0,
+    "offset": 0,
+    "limit": 15,
+    "data": 1629676800,
+    "queryNumber": 135
+}

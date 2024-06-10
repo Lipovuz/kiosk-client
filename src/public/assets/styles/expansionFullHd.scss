@@ -1,0 +1,114 @@
+//FullHD - 1080x1920 (width X height)
+body{
+    overflow: hidden;
+}
+
+.webcam-wrapper{
+    width: 100%;
+    overflow: hidden;
+    video {
+        object-fit: contain;
+    }
+}
+
+/*.selfie-container{  
+    app-camera{
+      height: 100vh;
+      width: auto;
+      position: absolute;
+      left: 0;
+      top: 0;
+      .webcam-wrapper{
+        border-radius: 0;
+      }
+    }
+}*/
+
+.snapshot .rotate-left,
+webcam.rotate-left div video {
+  transform: translate(0) rotate(270deg) scaleX(-1);
+}
+
+/*.selfie-container {
+    webcam.rotate-top div video{
+        
+    }
+    webcam.rotate-left div video{
+        
+    }
+
+    .webcam-wrapper video {
+        height: 100vh !important;
+        width: 100vh;
+        object-fit: cover;
+        margin-left: -240px;
+    }
+}*/
+/*app-main-page .webcam-wrapper video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    display: block;
+}*/
+
+.main-container{
+    width: 100%;
+    max-width: 1016px;
+}
+
+app-main-page .main-page__camera{
+    border-radius: $radius-camera;
+    height: 100vh;
+    width: auto;
+    position: absolute;
+    left: 0;
+    top: 0;    
+    webcam.rotate-top div video{
+            object-fit: cover;
+            width: 100%;
+            aspect-ratio: 1/1;
+            min-height: 100vh;
+            min-width: 0;
+    }
+    webcam.rotate-left div video{
+        object-fit: cover;
+        margin-left: -240px;
+    }
+    .webcam-wrapper{
+        border-radius: 0!important;
+    }
+    video {
+        height: 100vh;
+        width: 100vh;
+    }    
+}
+
+/*app-neural-page {
+    .webcam-wrapper video {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;    
+    }
+    webcam.rotate-top div video {
+        object-fit: fill;
+    }
+    webcam.rotate-left div video {
+        width:525px;
+        height: 513px;
+        object-fit: contain;
+    }
+    webcam.rotate-right div video {
+        
+    }
+}*/
+
+video{
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover;
+}

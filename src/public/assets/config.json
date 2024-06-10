@@ -1,0 +1,10 @@
+{
+  "host": "http://localhost/",
+  "tradeService": "ws://localhost:8700",
+  "fiatService": "ws://localhost:8011",
+  "pauseCamera": 5,
+  "activityTimer": 60,
+  "session": {
+    "expiryDate": 1000000000
+  }
+}

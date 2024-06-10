@@ -1,0 +1,80 @@
+version: '3.7'
+
+secrets:
+  stl_rsa:
+    file: ./../.ssh/stl_rsa
+services:
+  lomobil_client_db:
+    container_name: "lomobil_client_db"
+    network_mode: host
+    build:
+      network: host
+      context: ./conf/mysql
+    restart: "no"
+    volumes:
+      - ./data/mysql/data:/var/lib/mysql
+      - ./data/mysql/log:/var/log/mysql
+      - ./conf/mysql/conf.d/mysqldump.cnf:/etc/mysql/conf.d/mysqldump.cnf
+    environment:
+      MYSQL_USER: 'lomobil'
+      MYSQL_PASSWORD: '123456'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'lomobil_client'
+    ports:
+      - "3306:3306"
+  lomobil_client_phpfpm:
+    network_mode: host
+    build:
+      network: host
+      context: ./conf/php
+    container_name: "lomobil_client_phpfpm"
+    restart: "no"
+    depends_on:
+      - lomobil_client_db
+      - lomobil_client_redis
+    volumes:
+      - ./../src:/code
+      - ./conf/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./../.ssh:/ssh
+      - ./../.ssl:/ssl
+      - /var/run/cups/cups.sock:/var/run/cups/cups.sock
+    secrets:
+      - stl_rsa
+    ports:
+      - "9000:9000"
+  lomobil_client_nginx:
+    network_mode: host
+    container_name: "lomobil_client_nginx"
+    image: nginx:mainline
+    restart: "no"
+    ports:
+      - "80:80"
+    depends_on:
+      - lomobil_client_phpfpm
+    volumes:
+      - ./../src:/code
+      - ./conf/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./data/nginx/log:/var/log/nginx
+  lomobil_client_redis:
+    container_name: "lomobil_client_redis"
+    network_mode: host
+    build:
+      network: host
+      context: ./conf/redis
+    restart: "no"
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/data
+  lomobil_client_controller:
+    privileged: true
+    build:
+      network: host
+      context: ./conf/controller
+    container_name: "lomobil_client_device_controller"
+    restart: "no"
+    volumes:
+      - ./../controller:/code
+      - /dev:/dev
+    ports:
+      - "9671:9671"

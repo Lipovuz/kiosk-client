@@ -1,0 +1,36 @@
+
+.pl-4x6 {
+    height: 580px;
+    width: 850px;
+    padding: 20px 20px;
+    /*background-color: #bf3030;*/
+}
+
+.pl-4x6 .paper {
+    height: 542px;
+    width: 812px;
+    border: solid 1px #bf3030;
+    z-index: 101;
+    position: relative;
+}
+
+.pl-4x6 .image {
+    height: 540px;
+    width: 810px;
+    margin: 0;
+    background-color: #5ebc5e;
+    opacity: 0.5;
+    position: relative;
+    z-index: 100;
+}
+
+
+.layout-setting-values .input-group .input-group-text {
+    width: 110px;
+}
+.layout-setting-values .input-group .form-control {
+    width: 80px;
+}
+
+
+

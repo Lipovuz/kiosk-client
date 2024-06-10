@@ -1,0 +1,66 @@
+@import "fonts";
+@import "_icons";
+@import "_variables";
+//@import "expansion";
+//@import "expansionFullHd";
+//@import "_test";
+
+body{
+    overflow: hidden;
+}
+
+app-selfie webcam.rotate-top div video {
+    object-fit: cover;
+    width: 100%;
+    min-height: 100vh;
+    top: 0;
+}
+app-selfie .webcam-wrapper video {
+    height: 1080px !important;
+    width: 1920px !important;
+    position: fixed;
+    left: -419px;
+    top: 420px;
+    z-index: 50;
+}
+
+.search-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .search-btn{
+        width: 364px;
+        height: 160px;
+        margin-top: 32px;
+        margin-bottom: 32px;
+        justify-content: flex-start;
+        span{
+            margin-left: 24px;
+            text-align: left;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 40px;
+            color: #000000;
+            font-family: Panton;
+        }
+    }
+    
+    .search-btn:first-child{
+        margin-right: 32px;
+    }
+
+    .icon{
+        margin-left: 28px;
+    }
+}
+
+
+/*app-main-page .webcam-wrapper{
+    video{
+      height: 100% !important;
+      width: auto;
+      object-fit: cover;
+    }
+  }
+*/

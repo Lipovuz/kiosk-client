@@ -1,0 +1,14 @@
+/docker/data/*
+
+/src/node_modules
+/src/public/hot
+/src/public/storage
+/src/public/download/media
+/src/public/data/*
+/src/storage/*.key
+/src/storage/app
+#/vendor
+/src/vendor
+/src/.env
+/src/.idea
+.idea

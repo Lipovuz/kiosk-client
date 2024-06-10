@@ -1,0 +1,329 @@
+.icon {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    &-vk {
+        width: 72px;
+        height: 72px;
+        background-color: transparent;
+        background-image: url("../img/selfie-page/vk.svg");
+        background-position: center;
+    }
+
+    &-download {
+        width: 72px;
+        height: 72px;
+        background-color: transparent;
+        background-image: url("../img/selfie-page/download.svg");
+        background-position: center;
+    }
+
+    &-photo {
+        width: 72px;
+        height: 72px;
+        background-color: transparent;
+        background-image: url("../img/selfie-page/photo.svg");
+        background-position: center;
+    }
+
+    &-selfie {
+        width: 160px;
+        height: 160px;
+        background-color: transparent;
+        background-image: url("../img/selfie-page/selfie.svg");
+        background-position: center;
+    }
+
+    &-back {
+        width: 44px;
+        height: 44px;
+        background-image: url("../img/slot/back.svg");
+        background-position: center;
+        border-radius: 100px;
+        background-size: cover;
+    }
+
+    &-home {
+        width: 44px;
+        height: 44px;
+        background-image: url("../img/slot/home.svg");
+        background-position: center;
+        border-radius: 100px;
+        background-size: cover;
+    }
+
+    &-minus {
+        width: 56px;
+        height: 56px;
+        background-image: url("../img/minus.svg");
+        background-position: center;
+        border-radius: 100px;
+        background-size: cover;
+    }
+
+    &-plus {
+        width: 44px;
+        height: 44px;
+        background-image: url("../img/plus.svg");
+        background-position: center;
+        border-radius: 100px;
+        background-size: cover;
+    }
+
+    &-edit {
+        width: 44px;
+        height: 44px;
+        background-image: url("../img/edit.svg");
+        background-position: center;
+        border-radius: 100px;
+        background-size: cover;
+    }
+
+    &-pay-card {
+        width: 96px;
+        height: 96px;
+        background-image: url("../img/pay-card.svg");
+        background-position: center;
+        border-radius: 100px;
+        background-size: cover;
+    }
+
+    &-close {
+        width: 44px;
+        height: 44px;
+        background-image: url("~assets/img/close.svg");
+        background-position: center;
+        border-radius: 100px;
+        background-size: cover;
+    }
+
+    ///Pay
+    &-card {
+        width: 280px;
+        height: 176px;
+        background-image: url("../img/pay/card.svg");
+        background-position: center;
+        background-size: cover;
+        position: relative;
+    }
+
+    &-wifi {
+        width: 150px;
+        height: 150px;
+        background-image: url("../img/pay/wifi.svg");
+        background-position: center;
+        background-size: cover;
+        position: absolute;
+        top: 112px;
+        right: 184px;
+    }
+
+    &-union {
+        width: 300px;
+        height: 196px;
+        background-image: url("../img/pay/union.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-alert {
+        width: 150px;
+        height: 150px;
+        background-image: url("../img/pay/wifi.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-qr {
+        width: 196px;
+        height: 196px;
+        background-image: url("../img/pay/qr.svg");
+        background-position: center;
+        background-size: cover;
+    }
+    &-flash{
+        width: 224px;
+        height: 388px;
+        background-image: url("~assets/static/svg/flash.svg");
+    }
+    &-arrow {
+        width: 128px;
+        height: 128px;
+        background-image: url("../img/pay/arrow.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-arrow-left {
+        width: 100px;
+        height: 100px;
+        background-image: url("~assets/static/svg/arrow.svg");
+    }
+
+    &-back-dp {
+        width: 13px;
+        height: 28px;
+        background-image: url("../img/back-arrow-dp.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-next-dp {
+        width: 13px;
+        height: 28px;
+        background-image: url("../img/next-arrow-dp.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-photo {
+        width: 72px;
+        height: 72px;
+        background-image: url("../img/photo.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-search {
+        width: 72px;
+        height: 72px;
+        background-image: url("../img/search.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-camera {
+        width: 96px;
+        height: 96px;
+        background-image: url("../img/camera.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-tel-download {
+        width: 72px;
+        height: 72px;
+        background-image: url("../img/tel-download.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-social-download {
+        width: 72px;
+        height: 72px;
+        background-image: url("../img/social-download.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-lang-main {
+        width: 36px;
+        height: 36px;
+        background-image: url("../img/main-foot/lang.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-arrow-main {
+        width: 11px;
+        height: 6px;
+        background-image: url("../img/main-foot/arrow.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-info-main {
+        width: 36px;
+        height: 36px;
+        background-image: url("../img/main-foot/info.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-qr-main {
+        width: 34px;
+        height: 34px;
+        background-image: url("../img/main-foot/qr.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-inst-download {
+        width: 100px;
+        height: 100px;
+        background-image: url("../static/svg/download-module/instagram.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-vk-download {
+        width: 100px;
+        height: 100px;
+        background-image: url("../static/svg/download-module/vk.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-facebook-download {
+        width: 100px;
+        height: 100px;
+        background-image: url("../static/svg/download-module/facebook.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-wifi-download {
+        width: 140px;
+        height: 140px;
+        background-image: url("../static/svg/download-module/wi-fi.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-site-download {
+        width: 140px;
+        height: 140px;
+        background-image: url("../static/svg/download-module/site.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-email-download {
+        width: 140px;
+        height: 140px;
+        background-image: url("../static/svg/download-module/email.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-telegram-download {
+        width: 140px;
+        height: 140px;
+        background-image: url("../static/svg/download-module/telegram.svg");
+        background-position: center;
+        background-size: cover;
+    }
+
+    &-search-inst {
+        width: 44px;
+        height: 44px;
+        background-color: transparent;
+        background-image: url("../static/svg/download-module/search.svg");
+        background-position: center;
+    }
+
+    &-close-inst {
+        width: 44px;
+        height: 44px;
+        background-color: transparent;
+        background-image: url("../static/svg/download-module/closes.svg");
+        background-position: center;
+    }
+}
